@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        [A801] Forum Blacklist
 // @namespace   @Bolodefchoco
-// @version     0.2
+// @version     0.3
 // @description Allows you to ignore people on forums.
 // @author      @Bolodefchoco
 // @include     https://atelier801.com/*
@@ -26,7 +26,7 @@ function whitelistUser(playerName)
 {
 	ignoredList[playerName] = undefined;
 	GM_SuperValue.set("blacklist", ignoredList);
-	alert(playerName.replace("%23", '#').toUpperCase() + " has been whitelisted!");
+	alert(playerName.replace("%23", '#').toUpperCase() + " is not longer ignored!");
 
 }
 
@@ -46,7 +46,7 @@ function removeIgnoredAuthors(rerun = false)
 		{
             let messageContent = message.getElementsByClassName("cadre-message-message")[0].firstElementChild;
             messageContent.innerHTML = `<div class="cadre cadre-spoil">
-	<button id="bouton_spoil_${messageId}" class="btn btn-small btn-message" onclick="afficherSpoiler('${messageId}');return false;">Message from blacklisted user</button>
+	<button id="bouton_spoil_${messageId}" class="btn btn-small btn-message" onclick="afficherSpoiler('${messageId}');return false;">Message from ignored user</button>
 	<div id="div_spoil_${messageId}" class="hidden">${messageContent.innerHTML}</div>
 </div>`;
 
