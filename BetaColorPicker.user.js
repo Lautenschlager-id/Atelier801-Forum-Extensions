@@ -16,13 +16,13 @@
 	for (let tableIndex = 0; tableIndex < colorTables.length; tableIndex++) {
 		let table = colorTables[tableIndex];
 
-		let refElement = table.parentElement.firstElementChild.attributes.onclick.value.match('\'(.+?)\'')[1];
+	let refElement = table.parentElement.firstElementChild.attributes.onclick.value.match('\'(.+?)\'')[1];
 
 		table.parentElement.innerHTML += `<button type="button" id="colorpicker_${tableIndex}" class="btn btn-reduit" >
     <img src="/img/sections/pinceau.png" class="img16 espace-2-2">
 </button>
 `;
-		let colorPicker = document.getElementById("colorpicker_" + tableIndex);
+	let colorPicker = document.getElementById("colorpicker_" + tableIndex);
 
         jsColorPicker("button[id^=\"colorpicker_" + tableIndex + "\"]", {
             noAlpha: true,
