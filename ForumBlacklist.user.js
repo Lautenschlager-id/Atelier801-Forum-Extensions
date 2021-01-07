@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        [A801] Forum Blacklist
 // @namespace   @Bolodefchoco
-// @version     0.3
+// @version     0.4
 // @description Allows you to ignore people on forums.
 // @author      @Bolodefchoco
 // @include     https://atelier801.com/*
@@ -30,6 +30,7 @@ function whitelistUser(playerName)
 
 }
 
+let alreadyIgnored = { };
 function removeIgnoredAuthors(rerun = false)
 {
 	let nicknameList = { };
@@ -37,24 +38,38 @@ function removeIgnoredAuthors(rerun = false)
 	let messageContainer = document.getElementsByClassName("cadre-message");
 	for (let messageId = messageContainer.length - 1; messageId >= 0; messageId--) {
 		let message = messageContainer[messageId];
+		let postId = message.querySelectorAll('div[id^="message_"]')[0].id;
 		let popupList = messageContainer[messageId].getElementsByClassName("nav-header")[0].parentElement;
 		let nickname = popupList.children[1].firstElementChild.href.match("=(.+)")[1];
 		nickname = nickname.toLowerCase();
-        let hashtag = nickname.slice(-4);
+		let hashtag = nickname.slice(-4);
 
-		if (ignoredList[nickname])
+		if (ignoredList[nickname] && !alreadyIgnored[postId])
 		{
-            let messageContent = message.getElementsByClassName("cadre-message-message")[0].firstElementChild;
-            messageContent.innerHTML = `<div class="cadre cadre-spoil">
+			alreadyIgnored[postId] = true;
+
+			let messageContent = message.getElementsByClassName("cadre-message-message")[0].firstElementChild;
+			messageContent.innerHTML = `<div class="cadre cadre-spoil">
 	<button id="bouton_spoil_${messageId}" class="btn btn-small btn-message" onclick="afficherSpoiler('${messageId}');return false;">Message from ignored user</button>
 	<div id="div_spoil_${messageId}" class="hidden">${messageContent.innerHTML}</div>
 </div>`;
 
-            message.style.backgroundColor = "#2A2A29";
+			let avatar = message.getElementsByClassName("element-composant-auteur bouton-profil-avatar")[0];
+
+			let title;
+			if (!avatar)
+				title = message.getElementsByClassName("rang-prestige")[0].remove();
+			else
+			{
+				title = avatar.nextElementSibling.remove();
+				avatar.remove();
+			}
+
+			message.style.backgroundColor = "#2A2A29";
 			continue;
 		}
 		else if (rerun || (hashtag > "0000" && hashtag <= "0020"))
-            continue;
+			continue;
 		nicknameList[nickname] = true;
 
 		popupList.innerHTML += `<li>
