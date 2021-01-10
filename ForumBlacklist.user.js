@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        [A801] Forum Blacklist
 // @namespace   @Bolodefchoco
-// @version     0.4
+// @version     0.5
 // @description Allows you to ignore people on forums.
 // @author      @Bolodefchoco
 // @include     https://atelier801.com/*
@@ -38,7 +38,9 @@ function removeIgnoredAuthors(rerun = false)
 	let messageContainer = document.getElementsByClassName("cadre-message");
 	for (let messageId = messageContainer.length - 1; messageId >= 0; messageId--) {
 		let message = messageContainer[messageId];
-		let postId = message.querySelectorAll('div[id^="message_"]')[0].id;
+		let postId = message.querySelectorAll('div[id^="message_"]')[0];
+		if (!postId) continue;
+		postId = postId.id;
 		let popupList = messageContainer[messageId].getElementsByClassName("nav-header")[0].parentElement;
 		let nickname = popupList.children[1].firstElementChild.href.match("=(.+)")[1];
 		nickname = nickname.toLowerCase();
