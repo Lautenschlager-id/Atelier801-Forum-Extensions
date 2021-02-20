@@ -40,14 +40,16 @@ function addColorPicker(table, refElement, tableIndex)
 function addObjectCentralizer(textElement, refElement)
 {
 	textElement.children[2].innerHTML += `<li>
-	<a class="element-menu-outils" onclick="ajouterBBCode('${refElement}', '[table align=center][cel]', '[/cel][/table]', 39);"><img src="/img/icones/16/edit-alignment-center.png"> Table Center</a>
+	<a class="element-menu-outils" onclick="ajouterBBCode('${refElement}', '[table align=center][cel]', '[/cel][/table]', 26);">
+		<img src="/img/icones/16/edit-alignment-center.png"> Table Center
+	</a>
 </li>`
 }
 
 function addLuaCode(table, refElement)
 {
 	table.outerHTML += `<div class="btn-group groupe-boutons-barre-outils">
-	<button type="button" class="btn btn-reduit" onclick="ajouterBBCode('${refElement}', '[code=Lua]', '[/code]', 17);" title="Lua Code">
+	<button type="button" class="btn btn-reduit" onclick="ajouterBBCode('${refElement}', '[code=Lua]', '[/code]', 11);" title="Lua Code">
 		<img src="http://images.atelier801.com/177c092b190.png" class="img16 espace-2-2">
 	</button>
 </div>`;
