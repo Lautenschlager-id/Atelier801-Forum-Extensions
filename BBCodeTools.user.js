@@ -48,7 +48,7 @@ function addLuaCode(table, refElement)
 {
 	table.outerHTML += `<div class="btn-group groupe-boutons-barre-outils">
 	<button type="button" class="btn btn-reduit" onclick="ajouterBBCode('${refElement}', '[code=Lua]', '[/code]', 17);" title="Lua Code">
-		<img src="http://images.atelier801.com/177c092b190.png">
+		<img src="http://images.atelier801.com/177c092b190.png" class="img16 espace-2-2">
 	</button>
 </div>`;
 }
