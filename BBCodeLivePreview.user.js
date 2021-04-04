@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name        [A801] BBCode Preview
+// @name        [A801] BBCode Live Preview
 // @namespace   @Bolodefchoco
 // @version     0.1
 // @description Live bbcode edition.
