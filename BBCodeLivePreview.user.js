@@ -287,12 +287,12 @@ function getPreview(bbcode, elementId)
 
 function setAction(element, id)
 {
-    let siblingElement;
-    if (id)
-        siblingElement = document.getElementById("previsualisation_" + id);
-    else
-        siblingElement = element.nextElementSibling;
-    siblingElement.innerHTML = `<div class="cadre cadre-message cadre-previsualisation"></div>`;
+	let siblingElement;
+	if (id)
+		siblingElement = document.getElementById("previsualisation_" + id);
+	else
+		siblingElement = element.nextElementSibling;
+	siblingElement.innerHTML = `<div class="cadre cadre-message cadre-previsualisation"></div>`;
 	let previsualisation = siblingElement.firstElementChild;
 
 	function action(e)
@@ -324,14 +324,14 @@ function selectElementWithQuery(elementQuery)
 
 (function()
 {
-    'use restrict';
+	'use restrict';
 
 	selectElement("message_reponse");
 	selectElement("message_conversation");
 	selectElement("message_sujet");
-    selectElement("message_avertissement");
-    selectElement("raison");
+	selectElement("message_avertissement");
+	selectElement("raison");
 
 	selectElementWithQuery("textarea[id^=\"edit_message_\"");
-    selectElementWithQuery("textarea[id^=\"reponse_signalement_\"");
+	selectElementWithQuery("textarea[id^=\"reponse_signalement_\"");
 })();
