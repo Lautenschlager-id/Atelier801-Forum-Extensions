@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        [A801] BBCode Live Preview
 // @namespace   @Bolodefchoco
-// @version     0.2
+// @version     0.3
 // @description Live bbcode edition.
 // @author      @Bolodefchoco
 // @include     https://atelier801.com/*
@@ -293,12 +293,11 @@ function setAction(element, id)
 	else
 		siblingElement = element.nextElementSibling;
 	siblingElement.innerHTML = `<div class="cadre cadre-message cadre-previsualisation"></div>`;
-	let previsualisation = siblingElement.firstElementChild;
 
 	function action(e)
 	{
 		e = e.srcElement;
-		previsualisation.innerHTML = getPreview(e.value, e.id);
+		siblingElement.firstElementChild.innerHTML = getPreview(e.value, e.id);
 	}
 
 	element.addEventListener("change", action);
