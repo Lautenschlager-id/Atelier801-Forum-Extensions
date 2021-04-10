@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        [A801] BBCode Live Preview
 // @namespace   @Bolodefchoco
-// @version     0.3
+// @version     0.4
 // @description Live bbcode edition.
 // @author      @Bolodefchoco
 // @include     https://atelier801.com/*
@@ -25,7 +25,7 @@ let bbcodeRelation = {
 		[ "i", /\[i\]/g, `<span style="font-style:italic;">` ],
 		[ "u", /\[u\]/g, `<span style="text-decoration:underline;">` ],
 		[ "s", /\[s\]/g, `<span style="text-decoration:line-through;">` ],
-		[ "color", /\[color=#([A-F0-9]+?)\]/g, `<span style="color:#$1;">` ],
+		[ "color", /\[color=#([A-Fa-f0-9]+?)\]/g, `<span style="color:#$1;">` ],
 		[ "size", /\[size=(\d+?)\]/g, `<span style="font-size:$1px;">` ],
 		[ "font", /\[font=(.+?)]/g, `<span style="font-family:$1;">` ],
 		[ "b/i/u/s/color/size/font", /\[\/(?:b|i|u|s|color|size|font)\]/g, `</span>` ],
