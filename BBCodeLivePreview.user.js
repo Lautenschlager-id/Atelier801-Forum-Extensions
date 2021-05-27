@@ -292,8 +292,8 @@ function setAction(element, id)
 		siblingElement = document.getElementById("previsualisation_" + id);
 	else
 		siblingElement = element.nextElementSibling;
-	siblingElement.innerHTML = `<div class="cadre cadre-message cadre-previsualisation"></div>`;
-
+	siblingElement.innerHTML = `<div class="cadre cadre-${(id != "presentation" ? "message" : id)} cadre-previsualisation"></div>`;
+	
 	function action(e)
 	{
 		e = e.srcElement;
@@ -302,6 +302,21 @@ function setAction(element, id)
 
 	element.addEventListener("change", action);
 	element.addEventListener("keyup", action);
+
+	Object.defineProperty(element, "value", {
+		set: function(newValue) {
+			var valueProp = Object.getOwnPropertyDescriptor(HTMLTextAreaElement.prototype, "value");
+			var oldValue = valueProp.get.call(element);
+			valueProp.set.call(element, newValue);
+
+			if (oldValue != newValue)
+				element.dispatchEvent(new InputEvent("change"));
+		},
+		get: function() {
+			return Object.getOwnPropertyDescriptor(HTMLTextAreaElement.prototype, "value")
+				.get.call(element);
+		}
+	})
 }
 
 function selectElement(elementId)
