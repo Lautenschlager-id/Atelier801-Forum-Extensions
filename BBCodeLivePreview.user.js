@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        [A801] BBCode Live Preview
 // @namespace   @Bolodefchoco
-// @version     0.4
+// @version     0.5
 // @description Live bbcode edition.
 // @author      @Bolodefchoco
 // @include     https://atelier801.com/*
@@ -53,12 +53,12 @@ let bbcodeRelation = {
 		[ "url", /\[url=(.+?)\]([\s\S]+?)\[\/url\]/g , `<a href="$1" target="_blank" rel="noopener" onclick="return verifierLienMemePageMessage(event);">$2</a>` ],
 		[ "url", /\[url\](.+?)\[\/url\]/g , `<a href="$1" target="_blank" rel="noopener" onclick="return verifierLienMemePageMessage(event);">$1</a>` ],
 
-		[ "spoiler", /\[\/spoiler\]\n?/g, `</div></div>` ],
+		[ "spoiler", /\[\/spoil(?:er)?\]\n?/g, `</div></div>` ],
 
 		[ "\n", /\n/g, `<br>` ]
 	],
 	"complex": [
-		[ "spoiler", /\[spoiler(?:=([\s\S]+?))?\]/g, `<div class="cadre cadre-spoil"><button id="bouton_spoil_{2}" class="btn btn-small btn-message active" onclick="afficherSpoiler('{2}');return false;">Spoiler</button>{0}<div id="div_spoil_{2}" class="">`, `<span class="titre-spoiler" id="titre_spoil_{2}">{0}</span>` ],
+		[ "spoiler", /\[spoil(?:er)?(?:=([\s\S]+?))?\]/g, `<div class="cadre cadre-spoil"><button id="bouton_spoil_{2}" class="btn btn-small btn-message active" onclick="afficherSpoiler('{2}');return false;">Spoiler</button>{0}<div id="div_spoil_{2}" class="">`, `<span class="titre-spoiler" id="titre_spoil_{2}">{0}</span>` ],
 
 		[ "code", /\[code(?:=([\s\S]+?))?\]([\s\S]*?)\[\/code\]/g, `<div class="cadre cadre-code">{0}<div class="contenu-cadre-code"><div class="colonne-numeros-lignes-code empeche-selection-texte" unselectable="on">{2}</div><pre class="colonne-lignes-code">{1}</pre></div></div>`, `<div class="indication-langage-code">{0} Code</div><hr>` ],
 
@@ -330,6 +330,7 @@ function selectElementWithQuery(elementQuery)
 	selectElement("message_sujet");
 	selectElement("message_avertissement");
 	selectElement("raison");
+	selectElement("presentation");
 
 	selectElementWithQuery("textarea[id^=\"edit_message_\"");
 	selectElementWithQuery("textarea[id^=\"reponse_signalement_\"");
